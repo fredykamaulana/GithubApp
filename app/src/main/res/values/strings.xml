@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">GithubApp</string>
+    <string name="user_list_search_label">Cari User</string>
+    <string name="no_data_founded">Tidak ada data ditemukan.</string>
+    <string name="company_string_format">Company: %s</string>
+    <string name="location_string_format">Location: %s</string>
+    <string name="repo_string_format">%d \nRepositories</string>
+    <string name="followers_string_format">%d \nFollowers</string>
+    <string name="following_string_format">%d \nFollowing</string>
+    <string name="click_label">Click</string>
+    <string name="more_detail_label">from more detail</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

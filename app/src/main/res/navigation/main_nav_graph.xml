@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainNavGraph"
+    app:startDestination="@id/splashFragment">
+
+    <action
+        android:id="@+id/toUserListFragment"
+        app:destination="@id/userListFragment"
+        app:enterAnim="@android:anim/slide_in_left"
+        app:exitAnim="@android:anim/fade_out"
+        app:launchSingleTop="true"
+        app:popEnterAnim="@android:anim/slide_in_left"
+        app:popExitAnim="@android:anim/fade_out"
+        app:popUpTo="@id/userListFragment"
+        app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/toUserDetailFragment"
+        app:destination="@id/userDetailFragment"
+        app:enterAnim="@android:anim/slide_in_left"
+        app:exitAnim="@android:anim/fade_out"
+        app:popEnterAnim="@android:anim/slide_in_left"
+        app:popExitAnim="@android:anim/fade_out" />
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.fmyapp.githubapp.splashscreen.SplashFragment"
+        android:label="Splash"
+        tools:layout="@layout/fragment_splash" />
+
+    <fragment
+        android:id="@+id/userListFragment"
+        android:name="com.fmyapp.githubapp.userlist.UserListFragment"
+        android:label="User List"
+        tools:layout="@layout/fragment_user_list"/>
+
+    <fragment
+        android:id="@+id/userDetailFragment"
+        android:name="com.fmyapp.githubapp.userdetail.UserDetailFragment"
+        android:label="User Detail"
+        tools:layout="@layout/fragment_user_detail">
+        <argument
+            android:name="username"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
+</navigation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="IconLocation">
+        <ignore path="C:/Users/ramou/AndroidStudioProjects/GithubApp/app/src/main/res/drawable/ic_github_logo.webp" />
+    </issue>
+</lint>
