@@ -55,6 +55,10 @@ class MainActivity : AppCompatActivity(), UserDetailFragment.FragmentCallBack {
                     setWindowWithToolbar("User Detail")
                     setToolbarCanExpanded()
                 }
+                R.id.favouriteUserFragment -> {
+                    setWindowWithToolbar("Favourite User")
+                    setToolbarNotExpanded()
+                }
             }
         }
 
