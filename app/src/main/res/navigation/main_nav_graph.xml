@@ -24,6 +24,14 @@
         app:popEnterAnim="@android:anim/slide_in_left"
         app:popExitAnim="@android:anim/fade_out" />
 
+    <action
+        android:id="@+id/toFavouriteUserFragment"
+        app:destination="@id/favouriteUserFragment"
+        app:enterAnim="@android:anim/slide_in_left"
+        app:exitAnim="@android:anim/fade_out"
+        app:popEnterAnim="@android:anim/slide_in_left"
+        app:popExitAnim="@android:anim/fade_out" />
+
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.fmyapp.githubapp.splashscreen.SplashFragment"
@@ -46,4 +54,12 @@
             android:defaultValue=""
             app:argType="string" />
     </fragment>
+
+    <fragment
+        android:id="@+id/favouriteUserFragment"
+        android:name="com.fmyapp.githubapp.favouriteuser.FavouriteUserFragment"
+        android:label="Favourite User"
+        tools:layout="@layout/fragment_favourite_user" />
+
+
 </navigation>
