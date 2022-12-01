@@ -32,7 +32,6 @@ class FavouriteUserFragment : Fragment(R.layout.fragment_favourite_user), ItemCl
         isSavedInstanceStateNull = savedInstanceState === null
         setupObserver()
         setupView()
-
     }
 
     override fun onResume() {
@@ -68,16 +67,16 @@ class FavouriteUserFragment : Fragment(R.layout.fragment_favourite_user), ItemCl
                 }
                 is Result.Success -> {
                     binding.pbUserList.visibility = View.GONE
-                    showToast("User berhasil dihapus dari daftar favourite")
+                    showToast("User removed from favourite")
                     vm.getAllFavouriteUser()
                 }
                 is Result.Empty -> {
                     binding.pbUserList.visibility = View.GONE
-                    showToast("User ini tidak terhapus dari daftar favourite")
+                    showToast("User not removed from favourite")
                 }
                 is Result.Error -> {
                     binding.pbUserList.visibility = View.GONE
-                    showToast("User ini tidak terhapus dari daftar favourite")
+                    showToast("User not removed from favourite")
                 }
             }
         }
@@ -94,7 +93,7 @@ class FavouriteUserFragment : Fragment(R.layout.fragment_favourite_user), ItemCl
     }
 
     override fun onItemMenuClick(view: View, user: FavouriteUserEntity) {
-        showPopUpMenu(view, listOf("Hapus Favorite")) {
+        showPopUpMenu(view, listOf("Remove from favorite")) {
             vm.deleteFavouriteUser(user = user)
         }
     }
