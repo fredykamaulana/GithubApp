@@ -1,10 +1,16 @@
 package com.fmyapp.githubapp.userlist
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -35,6 +41,7 @@ class UserListFragment : Fragment(R.layout.fragment_user_list), ItemClickListene
         isSavedInstanceStateNull = savedInstanceState === null
         setupObserver()
         setupView()
+        setupMenu()
     }
 
     override fun onResume() {
@@ -113,16 +120,16 @@ class UserListFragment : Fragment(R.layout.fragment_user_list), ItemClickListene
                 is Result.Success -> {
                     binding.pbUserList.visibility = View.GONE
                     if (it.data == -1L) {
-                        showToast("User ini sudah ada dalam daftar favourite")
-                    } else showToast("User berhasil ditambahkan sebagai favourite")
+                        showToast("User already in favourite")
+                    } else showToast("User added as favourite")
                 }
                 is Result.Empty -> {
                     binding.pbUserList.visibility = View.GONE
-                    showToast("User ini sudah ada dalam daftar favourite")
+                    showToast("User already in favourite")
                 }
                 is Result.Error -> {
                     binding.pbUserList.visibility = View.GONE
-                    showToast("User ini sudah ada dalam daftar favourite")
+                    showToast("User already in favourite")
                 }
             }
         }
@@ -157,6 +164,23 @@ class UserListFragment : Fragment(R.layout.fragment_user_list), ItemClickListene
         binding.searchUserList.setOnQueryTextListener(queryTextListener)
     }
 
+    private fun setupMenu() {
+        (requireActivity() as MenuHost).addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.favourite_menu, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                if (menuItem.itemId == R.id.favourite) {
+                    findNavController().navigate(
+                        UserListFragmentDirections.toFavouriteUserFragment()
+                    )
+                }
+                return true
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+    }
+
     override fun onItemClick(data: String) {
         findNavController().navigate(
             UserListFragmentDirections.toUserDetailFragment().setUsername(data)
@@ -164,7 +188,7 @@ class UserListFragment : Fragment(R.layout.fragment_user_list), ItemClickListene
     }
 
     override fun onItemMenuClick(view: View, user: FavouriteUserEntity) {
-        showPopUpMenu(view, listOf("Tambahkan Favorite")) {
+        showPopUpMenu(view, listOf("Set as favorite")) {
             vm.setUserAsFavourite(user = user)
         }
     }
