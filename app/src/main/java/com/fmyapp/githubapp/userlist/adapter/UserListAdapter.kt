@@ -36,7 +36,18 @@ class UserListAdapter(private val listener: ItemClickListener) :
             binding.tvUserName.text = userData.login
             binding.tvUserRepo.text = binding.root.context.getString(R.string.click_label)
             binding.tvUserFollower.text = binding.root.context.getString(R.string.more_detail_label)
-            binding.ivMenuImage.setOnClickListener { listener.onItemMenuClick(it, FavouriteUserEntity()) }
+            binding.ivMenuImage.setOnClickListener {
+                listener.onItemMenuClick(
+                    it,
+                    FavouriteUserEntity(
+                        login = userData.login,
+                        id = userData.id,
+                        avatarUrl = userData.avatarUrl,
+                        name = userData.login,
+                        favourite = true
+                    )
+                )
+            }
         }
 
         companion object {
