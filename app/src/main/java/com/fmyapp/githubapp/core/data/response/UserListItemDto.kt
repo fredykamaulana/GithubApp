@@ -1,6 +1,5 @@
 package com.fmyapp.githubapp.core.data.response
 
-import com.fmyapp.githubapp.core.data.localsource.entities.FavouriteUserEntity
 import com.squareup.moshi.Json
 
 data class UserListItemDto(
