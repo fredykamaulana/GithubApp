@@ -60,4 +60,8 @@ class UserListViewModel @Inject constructor(
             _setUserAsFavourite.value = favouriteUserUseCase.setUserAsFavourite(user = user).last()
         }
     }
+
+    fun setUserFavouriteResultAsNeutral() {
+        _setUserAsFavourite.value = Result.Empty
+    }
 }
