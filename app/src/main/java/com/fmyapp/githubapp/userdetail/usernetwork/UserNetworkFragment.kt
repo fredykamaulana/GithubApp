@@ -35,12 +35,8 @@ class UserNetworkFragment : Fragment(R.layout.fragment_user_network) {
 
     private fun setupData() {
         when (tabSection) {
-            0 -> {
-                if (isSavedInstanceStateNull) vm.getUserFollowers(username = username)
-            }
-            1 -> {
-                if (isSavedInstanceStateNull) vm.getUserFollowing(username = username)
-            }
+            0 -> if (isSavedInstanceStateNull) vm.getUserFollowers(username = username)
+            1 -> if (isSavedInstanceStateNull) vm.getUserFollowing(username = username)
         }
     }
 
@@ -64,7 +60,6 @@ class UserNetworkFragment : Fragment(R.layout.fragment_user_network) {
                 }
                 is Result.Error -> {
                     binding.pbUserNetwork.visibility = View.GONE
-                    showSnackBar(binding.root, it.errorMessage ?: "Unknown Error") {}
                 }
             }
         }
