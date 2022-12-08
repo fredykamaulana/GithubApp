@@ -122,10 +122,11 @@ class UserListFragment : Fragment(R.layout.fragment_user_list), ItemClickListene
                     if (it.data == -1L) {
                         showToast("User already in favourite")
                     } else showToast("User added as favourite")
+
+                    vm.setUserFavouriteResultAsNeutral()
                 }
                 is Result.Empty -> {
                     binding.pbUserList.visibility = View.GONE
-                    showToast("User already in favourite")
                 }
                 is Result.Error -> {
                     binding.pbUserList.visibility = View.GONE
@@ -167,15 +168,23 @@ class UserListFragment : Fragment(R.layout.fragment_user_list), ItemClickListene
     private fun setupMenu() {
         (requireActivity() as MenuHost).addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menuInflater.inflate(R.menu.favourite_menu, menu)
+                menuInflater.inflate(R.menu.main_menu, menu)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                if (menuItem.itemId == R.id.favourite) {
-                    findNavController().navigate(
-                        UserListFragmentDirections.toFavouriteUserFragment()
-                    )
+                when (menuItem.itemId) {
+                    R.id.setting -> {
+                        findNavController().navigate(
+                            UserListFragmentDirections.toSettingFragment()
+                        )
+                    }
+                    R.id.favourite -> {
+                        findNavController().navigate(
+                            UserListFragmentDirections.toFavouriteUserFragment()
+                        )
+                    }
                 }
+
                 return true
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
