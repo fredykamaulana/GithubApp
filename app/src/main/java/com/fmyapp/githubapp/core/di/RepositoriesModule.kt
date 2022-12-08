@@ -12,6 +12,8 @@ import com.fmyapp.githubapp.core.data.repositories.getusers.GetUserListRepositor
 import com.fmyapp.githubapp.core.data.repositories.getusers.GetUserListRepositoryImpl
 import com.fmyapp.githubapp.core.data.repositories.searchuser.SearchUserRepository
 import com.fmyapp.githubapp.core.data.repositories.searchuser.SearchUserRepositoryImpl
+import com.fmyapp.githubapp.core.data.repositories.setting.SettingPreferenceRepository
+import com.fmyapp.githubapp.core.data.repositories.setting.SettingPreferenceRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -37,4 +39,7 @@ interface RepositoriesModule {
 
     @Binds
     fun bindFavouriteUserRepository(repositoryImpl: FavouriteUserRepositoryImpl): FavouriteUserRepository
+
+    @Binds
+    fun bindSettingPreferenceRepository(repositoryImpl: SettingPreferenceRepositoryImpl): SettingPreferenceRepository
 }
