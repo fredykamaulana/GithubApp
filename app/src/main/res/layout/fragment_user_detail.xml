@@ -48,7 +48,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvUserLocation"
-        style="@style/TextNormal"
+        style="@style/TextAppearance.AppCompat.Body2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -60,7 +60,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvUserRepo"
-        style="@style/TextNormal"
+        style="@style/TextAppearance.AppCompat.Body2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -74,7 +74,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvUserFollowers"
-        style="@style/TextNormal"
+        style="@style/TextAppearance.AppCompat.Body2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -87,7 +87,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvUserFollowing"
-        style="@style/TextNormal"
+        style="@style/TextAppearance.AppCompat.Body2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
