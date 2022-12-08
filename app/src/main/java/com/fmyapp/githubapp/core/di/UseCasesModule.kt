@@ -12,6 +12,8 @@ import com.fmyapp.githubapp.core.data.usecases.getusers.GetUserListInteractor
 import com.fmyapp.githubapp.core.data.usecases.getusers.GetUserListUseCase
 import com.fmyapp.githubapp.core.data.usecases.searchuser.SearchUserInteractor
 import com.fmyapp.githubapp.core.data.usecases.searchuser.SearchUserUseCase
+import com.fmyapp.githubapp.core.data.usecases.setting.SettingPreferenceInteractor
+import com.fmyapp.githubapp.core.data.usecases.setting.SettingPreferenceUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -36,5 +38,8 @@ interface UseCasesModule {
     fun bindSearchUserUseCase(interactor: SearchUserInteractor): SearchUserUseCase
 
     @Binds
-    fun bundFavouriteUserUseCase(interactor: FavouriteUserInteractor): FavouriteUserUseCase
+    fun bindFavouriteUserUseCase(interactor: FavouriteUserInteractor): FavouriteUserUseCase
+
+    @Binds
+    fun bindSettingPreferenceUseCase(interactor: SettingPreferenceInteractor): SettingPreferenceUseCase
 }
