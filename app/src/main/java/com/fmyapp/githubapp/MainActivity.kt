@@ -3,7 +3,9 @@ package com.fmyapp.githubapp
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
@@ -12,6 +14,7 @@ import com.fmyapp.githubapp.core.utils.loadRectangleImageWithUrl
 import com.fmyapp.githubapp.core.utils.setupToolbar
 import com.fmyapp.githubapp.core.utils.viewBinding
 import com.fmyapp.githubapp.databinding.ActivityMainBinding
+import com.fmyapp.githubapp.setting.SettingViewModel
 import com.fmyapp.githubapp.userdetail.UserDetailFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,6 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity(), UserDetailFragment.FragmentCallBack {
 
     private val binding: ActivityMainBinding by viewBinding(ActivityMainBinding::inflate)
+    private val vm: SettingViewModel by viewModels()
 
     private val navController by lazy {
         Navigation.findNavController(this, R.id.navHostFragment)
@@ -31,8 +35,17 @@ class MainActivity : AppCompatActivity(), UserDetailFragment.FragmentCallBack {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        observeThemeSetting()
         setupOnBackPressed()
         setupNavigation()
+    }
+
+    private fun observeThemeSetting() {
+        vm.getThemeSettings().observe(this) { isDarkMode ->
+            val themeMode =
+                if (isDarkMode) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO
+            AppCompatDelegate.setDefaultNightMode(themeMode)
+        }
     }
 
     private fun setupNavigation() {
@@ -48,15 +61,19 @@ class MainActivity : AppCompatActivity(), UserDetailFragment.FragmentCallBack {
                     setWindowToFullScreen()
                 }
                 R.id.userListFragment -> {
-                    setWindowWithToolbar("Github User")
+                    setWindowWithToolbar()
                     setToolbarNotExpanded()
                 }
                 R.id.userDetailFragment -> {
-                    setWindowWithToolbar("User Detail")
+                    setWindowWithToolbar()
                     setToolbarCanExpanded()
                 }
                 R.id.favouriteUserFragment -> {
-                    setWindowWithToolbar("Favourite User")
+                    setWindowWithToolbar()
+                    setToolbarNotExpanded()
+                }
+                R.id.settingFragment -> {
+                    setWindowWithToolbar()
                     setToolbarNotExpanded()
                 }
             }
@@ -66,7 +83,7 @@ class MainActivity : AppCompatActivity(), UserDetailFragment.FragmentCallBack {
         binding.appBarLayout.visibility = View.GONE
     }
 
-    private fun setWindowWithToolbar(title: String) {
+    private fun setWindowWithToolbar(title: String = "Github App") {
         binding.appBarLayout.visibility = View.VISIBLE
         setupToolbar(binding.toolbar, title)
     }
