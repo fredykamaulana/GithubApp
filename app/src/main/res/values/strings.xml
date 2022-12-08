@@ -10,4 +10,6 @@
     <string name="click_label">Click</string>
     <string name="more_detail_label">from more detail</string>
     <string name="menu_label_favourite">Favourite</string>
+    <string name="menu_label_setting">Setting</string>
+    <string name="setting_dark_mode">Dark Mode</string>
 </resources>
